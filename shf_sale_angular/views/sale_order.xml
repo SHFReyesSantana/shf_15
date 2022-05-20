@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='preview_sale_order']" position="after" >
+				<button name="preview_sale_angular" type="object" class="oe_stat_button" icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Sale</span>
+                                <span class="o_stat_text">Design</span>
+                            </div>
+				</button>
+
+			</xpath>
+
+			<xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+				<field name="product_quantity" class="o_hidden" />
+				<field name="unit" class="o_hidden"/>
+				<field name="total"   class="o_hidden" />
+
+				<field name="state_hidden"   invisible="1" />
+				<!--
+				<field name="section_parent_id" invisible="1" />
+				<field name="field_previous"  invisible="1"  />
+				<field name="nivel_section"  invisible="1"   />
+				-->
+
+
+				<field name="order_id"  invisible="1"   />
+				<field name="parent_section_id"
+					   optional="hidden"
+					   domain="[('order_id','=',order_id)]"   />
+
+			</xpath>
+			<xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='sequence']" position="after">
+				<!--
+
+				<field name="sequence_str"  class="o_hidden"  />
+
+				-->
+
+
+				<button name="action_hidden"  type="object" string="." class="o_hidden" icon="fa-eye" />
+			</xpath>
+			<xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/control/create[@name='add_section_control']" position="after">
+                <create name="add_sub_section_control" string="Add a subsection"
+						context="{'default_display_type': 'line_section' ,  'default_nivel_section': 1 }"
+
+				/>
+			</xpath>
+
+
+
+		</field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+.o_notebook{
+	.o_list_optional_columns{
+		table{
+			thead{
+				tr{
+					th[data-name="product_quantity"]{
+						display:none !important; 
+					}
+					th[data-name="total"]{
+						display:none !important;
+					}
+
+					th[data-name="unit"]{
+						display:none !important;
+					}
+				}
+			}
+		}
+	}
+}
