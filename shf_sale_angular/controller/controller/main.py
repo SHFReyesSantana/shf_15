@@ -55,16 +55,14 @@ class WebHooks(http.Controller):
                                 "value":  tx.amount
                             })
 
-
-
-
             dx['items'].append(
 
                 {
                     "id": l.id ,
-                    "parentId": str(l.parent_section_id.id) if l.parent_section_i else None ,
+                    "parentId": str(l.parent_section_id.id) if l.parent_section_id else None ,
                     #"selected": false,
                     "consecutive": str(l.sequence) ,
+                    'children' : [] ,
                     "data": {
                         "id": l.id ,
                         "type": type,
