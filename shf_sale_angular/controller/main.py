@@ -37,6 +37,24 @@ class WebHooks(http.Controller):
         }
 
         for l in sale.order_line:
+            tax_ids = []
+            #GROUP seccion
+            #ORDER_LINE producto
+            #OPTIONAL producto
+            #ACTIVITY actividad
+            #KITS kits
+
+            type = 'GROUP' if l.display_type else 'ORDER_LINE'
+
+
+            for tx in l.tax_id:
+                tax_ids.append({
+                                "id": str(tx.id),
+                                "name":  str(tx.display_name),
+                                "value":  tx.amount
+                            })
+
+
 
 
             dx['items'].append(
@@ -48,28 +66,26 @@ class WebHooks(http.Controller):
                     "consecutive": str(l.sequence) ,
                     "data": {
                         "id": l.id ,
-                        "type": "GROUP",
-                        "description": "",
-                        "name": "",
+                        "type": type,
+                        "description":  l.name,
+                        "name": l.product_id.display_name if l.product_id else l.name,
                         "brand": "",
                         "unitOfMeasurement": 0,
-                        "taxes": [
-                            {
-                                "id": "1",
-                                "name": "",
-                                "value": 0
-                            }
-                        ],
-                        "amount": 0,
-                        "listPrice": 0,
+                        "taxes": tax_ids,
+                        "amount": l.product_uom_qty ,
+                        "listPrice": l.price_unit,
                         "discountPercentage": 0,
                         "gainPercentage": 0,
                         "cost": 0,
                         "stock": 0 ,
                     }
+
                 }
+
             )
 
-        return json.dumps(dx)
+
+
+        return json.dumps(dx['items'])
 
 
