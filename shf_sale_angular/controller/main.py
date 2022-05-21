@@ -32,7 +32,8 @@ class WebHooks(http.Controller):
         dx = {
             'id_sale': sale.id ,
             'name': sale.name ,
-            'partner': sale.partner_id.name  ,
+            #'partner': sale.partner_id.name  ,
+            'partner': 'hola',
             'items': []
         }
 
