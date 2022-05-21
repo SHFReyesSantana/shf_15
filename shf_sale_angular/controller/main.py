@@ -16,7 +16,7 @@ class WebHooks(http.Controller):
             'data': {
                 'token': str(request.session.session_token) ,
                 'id_sale':  instance.id ,
-                'url': self.env['ir.config_parameter'].search([('key','=','web.base.url')]).value ,
+                'url': http.request.env['ir.config_parameter'].search([('key','=','web.base.url')]).value ,
                 'tag_read' : 'read_sale_angular/'+str(instance.id) ,
                 'tag_write' :  'write_sale_angular/'+str(instance.id) ,
 
