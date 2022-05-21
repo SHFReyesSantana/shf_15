@@ -48,6 +48,8 @@
     <body>
         <strong>PIPIPI</strong>
         <strong id="data_storage"  t-att-data-values="data" >AQUI VA LA DATA QUE DESAPARECERA</strong>
+
+
         <script type="text/javascript">
 
             var dx = document.getElementById('data_storage').getAttribute('data-values');
@@ -58,6 +60,14 @@
 
 
         </script>
+
+        <app-root />
+
+
+        <link rel="stylesheet" type="text/css" href="/shf_sale_angular/static/src/angular/styles.css"/>
+        <script type="text/javascript" src="/shf_sale_angular/static/src/angular/runtime.js" />
+        <script type="text/javascript" src="/shf_sale_angular/static/src/angular/polyfills.js" />
+        <script type="text/javascript" src="/shf_sale_angular/static/src/angular/main.js" />
 
     </body>
 </html>
